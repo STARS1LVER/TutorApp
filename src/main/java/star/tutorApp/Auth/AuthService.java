@@ -51,30 +51,31 @@ public class AuthService {
 }
 
 
-    public AuthResponse register(RegisterRequest request) {
-        System.out.println("Iniciando registro para: " + request.getEmail());
-        
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            System.out.println("Email ya registrado: " + request.getEmail());
-            throw new EmailAlreadyExistsException("El email " + request.getEmail() + " ya está registrado");
-        }
-        
-        String encodedPassword = passwordEncoder.encode(request.getPassword());
-        User user = User.builder()
-                .name(request.getName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .password(encodedPassword)
-                .career(request.getCareer())
-                .modality(request.getModality())
-                .semester(request.getSemester())
-                .role(Role.USER)
-                .build();
-                
-        userRepository.save(user);
-        return AuthResponse.builder()
-                .token(jwtService.getToken(user))
-                .build();
+public AuthResponse register(RegisterRequest request) {
+    System.out.println("Iniciando registro para: " + request.getEmail());
+    
+    if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+        System.out.println("Email ya registrado: " + request.getEmail());
+        throw new EmailAlreadyExistsException("El email " + request.getEmail() + " ya está registrado");
     }
-
+    
+    String encodedPassword = passwordEncoder.encode(request.getPassword());
+    User user = User.builder()
+            .name(request.getName())
+            .lastName(request.getLastName())
+            .email(request.getEmail())
+            .password(encodedPassword)
+            .career(request.getCareer())
+            .modality(request.getModality())
+            .semester(request.getSemester())
+            .role(Role.USER)
+            .build();
+            
+    userRepository.save(user);
+    return AuthResponse.builder()
+            .token(jwtService.getToken(user))
+            .email(request.getEmail())
+            .message("Registro exitoso")
+            .build();
+}
 }
