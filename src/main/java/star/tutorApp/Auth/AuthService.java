@@ -38,6 +38,8 @@ public class AuthService {
         String token = jwtService.getToken(user);
         return AuthResponse.builder()
                 .token(token)
+                .email(user.getUsername())
+                .message("Inicio de sesión exitoso")
                 .build();
     } catch (BadCredentialsException e) {
         System.out.println("Credenciales inválidas para: " + request.getEmail());
