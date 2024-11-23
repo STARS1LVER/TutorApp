@@ -1,4 +1,4 @@
-package star.tutorApp.Auth;
+package star.tutorApp.Auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

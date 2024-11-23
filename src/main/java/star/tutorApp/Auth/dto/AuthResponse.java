@@ -1,4 +1,4 @@
-package star.tutorApp.Auth;
+package star.tutorApp.Auth.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -10,14 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class AuthResponse {
 
-    String name;
-    String lastName;
+    String token;
     String email;
-    String password;
-    String career;
-    String semester;
-    String modality;
-
+    String message;
 }

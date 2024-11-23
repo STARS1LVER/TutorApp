@@ -1,7 +1,12 @@
-package star.tutorApp.Auth;
+package star.tutorApp.Auth.controllers;
 
 
 import lombok.RequiredArgsConstructor;
+import star.tutorApp.Auth.dto.AuthResponse;
+import star.tutorApp.Auth.dto.LoginRequest;
+import star.tutorApp.Auth.dto.RegisterRequest;
+import star.tutorApp.Auth.service.AuthService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

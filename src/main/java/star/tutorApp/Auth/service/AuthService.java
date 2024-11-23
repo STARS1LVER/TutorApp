@@ -1,4 +1,4 @@
-package star.tutorApp.Auth;
+package star.tutorApp.Auth.service;
 
 
 import lombok.RequiredArgsConstructor;
@@ -13,6 +13,9 @@ import star.tutorApp.Jwt.JwtService;
 import star.tutorApp.User.Role;
 import star.tutorApp.User.User;
 import star.tutorApp.User.UserRepository;
+import star.tutorApp.Auth.dto.AuthResponse;
+import star.tutorApp.Auth.dto.LoginRequest;
+import star.tutorApp.Auth.dto.RegisterRequest;
 import star.tutorApp.Exception.EmailAlreadyExistsException;
 
 @Service
