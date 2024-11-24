@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import star.tutorApp.Student.Dtos.SubjectUserDto;
 import star.tutorApp.Student.Entities.SubjectEntity;
 import star.tutorApp.Student.Entities.SubjectUserEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import star.tutorApp.Student.Services.SubjectService;
+import org.springframework.security.core.userdetails.UserDetails;
+import star.tutorApp.User.User;
 
 import java.util.List;
 
@@ -21,20 +24,25 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @GetMapping("/semester/{semester}")
-    public ResponseEntity<List<SubjectEntity>> getSubjectsBySemester(@PathVariable int semester) {
-
-        List<SubjectEntity> subjects = subjectService.getSubjectsBySemester(semester);
-
-        return ResponseEntity.ok(subjects);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<List<SubjectUserDto>> getSubjectsById(@PathVariable Long id) {
         List<SubjectUserDto> results = subjectService.getSubjectDetailsById(id);
-        if (results.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
+
         return ResponseEntity.ok(results);
+    }
+
+    @GetMapping("/semester")
+    public ResponseEntity<List<SubjectEntity>> getSubjectsBySemester() {
+        // Obtener el usuario autenticado desde el SecurityContext
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Obtener el objeto User desde UserDetails (si tienes una implementación personalizada de UserDetails)
+        User user = (User) userDetails;
+
+        // Acceder al semestre del usuario
+        String semester = user.getSemester();
+        List<SubjectEntity> subjects = subjectService.getSubjectsBySemester(Integer.parseInt(semester));
+
+        return ResponseEntity.ok(subjects);
     }
 }

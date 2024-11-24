@@ -27,10 +27,12 @@ public class SubjectUserEntity {
 
     @ManyToOne
     @JoinColumn(name = "subject_id", referencedColumnName = "id", nullable = false)
+    @JsonIgnore
     private SubjectEntity subject;
 
     @ManyToOne
     @JoinColumn(name = "tutor_id", referencedColumnName = "id", nullable = false) // 'tutor_id' es la columna en esta tabla que referencia la entidad Tutor/Use
+    @JsonIgnore
     private User tutor;
 
     // Timestamp para creación

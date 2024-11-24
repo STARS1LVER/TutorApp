@@ -18,6 +18,7 @@ public interface SubjectRepository extends JpaRepository<SubjectEntity, Long> {
     @Query("SELECT su FROM SubjectUserEntity su " +
             "JOIN FETCH su.subject s " +
             "JOIN FETCH su.tutor t " +
-            "WHERE su.subject.id = :id")
+            "WHERE su.subject.id = :id " +
+            "GROUP BY s.name") // Agrupando por el nombre del subject
     List<SubjectUserEntity> findBySubjectId(@Param("id") Long id);
 }

@@ -52,7 +52,6 @@ public class User implements UserDetails {
     Role role;
 
     @OneToMany(mappedBy = "tutor")
-    @JsonIgnore
     private List<SubjectUserEntity> subjectUsers;
 
     @Override
