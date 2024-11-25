@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +37,16 @@ public class User implements UserDetails {
     String imageUrl;
     @Enumerated(EnumType.STRING)
     Role role;
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
+
 
     @Override
     public Collection< ? extends GrantedAuthority > getAuthorities() {
@@ -64,6 +76,14 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
+
+    @Builder
+    public static UserBuilder builder() {
+        return new UserBuilder()
+            .createdAt(LocalDateTime.now())
+            .updatedAt(LocalDateTime.now());
+    }
+
 
 
 
