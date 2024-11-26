@@ -13,6 +13,8 @@ public class SubjectUserMapper {
                 entity.getTutor().getName(),
                 entity.getTutor().getEmail(),
                 entity.getSubject().getName(),
+                entity.getSubject().getSemester(),
+                entity.getSubject().getImgBs64(),
                 entity.getSubject().getDescription(),
                 entity.getCreatedAt(),
                 entity.getUpdatedAt()
