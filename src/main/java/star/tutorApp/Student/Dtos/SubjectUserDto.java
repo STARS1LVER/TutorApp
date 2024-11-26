@@ -11,8 +11,10 @@ public class SubjectUserDto {
     private String subjectDescription;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String img_bs64;
+    private int subjectSemester;
 
-    public SubjectUserDto(int id, String tutorName, String tutorEmail, String subjectName, String subjectDescription, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public SubjectUserDto(int id, String tutorName, String tutorEmail, String subjectName, int semester, String subjectDescription, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.tutorName = tutorName;
         this.tutorEmail = tutorEmail;
@@ -20,6 +22,8 @@ public class SubjectUserDto {
         this.subjectDescription = subjectDescription;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.subjectSemester = subjectSemester;
+        this.img_bs64 = img_bs64;
     }
 
     // Getters y Setters
@@ -78,5 +82,21 @@ public class SubjectUserDto {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getSubjectSemester() {
+        return subjectSemester;
+    }
+
+    public void setSubjectSemester(int subjectSemester) {
+        this.subjectSemester = subjectSemester;
+    }
+
+    public String getImg_bs64() {
+        return img_bs64;
+    }
+
+    public void setImg_bs64(String img_bs64) {
+        this.img_bs64 = img_bs64;
     }
 }
