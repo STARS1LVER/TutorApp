@@ -18,6 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -32,32 +33,42 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      * Si no hay token, pasa la solicitud al siguiente filtro y termina.
      * Si hay token, simplemente pasa la solicitud al siguiente filtro
      */
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException,IOException  {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        try {
+            final String token = getTokenFromRequest(request);
+            final String username;
 
-        final String token = getTokenFromRequest( request ); //Obtenemos el token de la solicitud
-        final String username;
-
-        if( token == null) {
-            System.out.println("No se encontró token"); 
-            filterChain.doFilter(request, response);
-            return;
-        }
-
-        username = jwtService.getUsernameFromToken(token);
-        if( username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            if( jwtService.isTokenValid(token, userDetails)) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    userDetails,
-                    null,
-                    userDetails.getAuthorities()
-                );
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+            if (token == null) {
+                System.out.println("No se encontró token");
+                filterChain.doFilter(request, response);
+                return;
             }
-        }
-        filterChain.doFilter( request, response );
 
+            username = jwtService.getUsernameFromToken(token);
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                if (jwtService.isTokenValid(token, userDetails)) {
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities()
+                    );
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            }
+            filterChain.doFilter(request, response);
+        } catch (io.jsonwebtoken.security.SecurityException e) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            String jsonResponse = "{\"message\":\"Token inválido o manipulado\",\"error\":\"INVALID_TOKEN\"}";
+            response.getWriter().write(jsonResponse);
+        } catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            String jsonResponse = "{\"message\":\"Error de autenticación\",\"error\":\"AUTH_ERROR\"}";
+            response.getWriter().write(jsonResponse);
+        }
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {

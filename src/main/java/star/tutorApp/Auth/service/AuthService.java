@@ -16,7 +16,9 @@ import star.tutorApp.User.User;
 import star.tutorApp.User.UserRepository;
 import star.tutorApp.Auth.dto.AuthResponse;
 import star.tutorApp.Auth.dto.LoginRequest;
+import star.tutorApp.Auth.dto.LoginResponse;
 import star.tutorApp.Auth.dto.RegisterRequest;
+import star.tutorApp.Auth.dto.UserResponse;
 import star.tutorApp.Exception.EmailAlreadyExistsException;
 
 @Service
@@ -29,21 +31,32 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
-  public AuthResponse login(LoginRequest request) {
+  public LoginResponse login(LoginRequest request) {
     try {
-        System.out.println("Intentando login con email: " + request.getEmail());
-        authenticationManager.authenticate(
+          authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
-        UserDetails user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmail(request.getEmail())
             .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
             
-        System.out.println("Usuario autenticado correctamente");
         String token = jwtService.getToken(user);
-        return AuthResponse.builder()
+        
+        UserResponse userResponse = UserResponse.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .career(user.getCareer())
+                .modality(user.getModality())
+                .semester(user.getSemester())
+                .role(user.getRole())
+                .build();
+                
+        return LoginResponse.builder()
                 .token(token)
-                .email(user.getUsername())
                 .message("Inicio de sesión exitoso")
+                .status(200)
+                .user(userResponse)
                 .build();
     } catch (BadCredentialsException e) {
         System.out.println("Credenciales inválidas para: " + request.getEmail());
@@ -86,15 +99,23 @@ public AuthResponse register(RegisterRequest request) {
 
 
 public AuthResponse logout(String authHeader) {
-    if (authHeader != null && authHeader.startsWith("Bearer ")) {
-        SecurityContextHolder.clearContext();
+    if (authHeader == null || !authHeader.startsWith("Bearer ")) {
         return AuthResponse.builder()
-                .message("Sesión cerrada exitosamente")
-                .build();
-    }
-    return AuthResponse.builder()
             .message("No hay sesión activa")
             .build();
+    }
+    
+    try {
+        String token = authHeader.substring(7);
+        SecurityContextHolder.clearContext();
+        return AuthResponse.builder()
+            .message("Sesión cerrada exitosamente")
+            .build();
+    } catch (Exception e) {
+        return AuthResponse.builder()
+            .message("Error al cerrar sesión")
+            .build();
+    }
 }
 
 }
