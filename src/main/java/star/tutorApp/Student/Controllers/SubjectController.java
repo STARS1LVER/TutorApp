@@ -46,11 +46,9 @@ public class SubjectController {
         return ResponseEntity.ok(subjects);
     }
 
-    @GetMapping("/{tutorId}")
-    public ResponseEntity<String> sendMessageRequestTutor(@PathVariable Long tutorId) {
-
+    @GetMapping("/sendRequest")
+    public ResponseEntity<String> sendMessageRequestTutor() {
         emailService.sendEmail("jflenis36@gmail.com", "Prueba de correo", "Hola, este es un correo de prueba de tutorStar.");
-
         return ResponseEntity.ok("Enviado de forma satisfactoria");
     }
 }
