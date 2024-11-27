@@ -41,11 +41,14 @@
 
             // Mapear el resultado a un DTO
             return new SubjectWithTutorsDto(
-                    subjectId,
-                    (String) result.get("name"),
-                    (Integer) result.get("semester"),
-                    (Integer) result.get("credits"),
-                    parseTutors((String) result.get("tutors")) // Transformar JSON a lista de DTOs
+                subjectId,
+                (String) result.get("name"),
+                (Integer) result.get("semester"),
+                (Integer) result.get("credits"),
+                parseTutors((String) result.get("tutors")),
+                (Integer) result.get("code"),
+                (String) result.get("description"),
+                (String) result.get("img_bs64") // Transformar JSON a lista de DTOs
             );
         }
 

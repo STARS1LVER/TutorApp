@@ -7,14 +7,20 @@ public class SubjectWithTutorsDto {
     private String name;
     private Integer semester;
     private Integer credits;
+    private Integer code;
+    private String description;
+    private String img_bs64;
     private List<TutorDto> tutors;
 
-    public SubjectWithTutorsDto(Long id, String name, Integer semester, Integer credits, List<TutorDto> tutors) {
+    public SubjectWithTutorsDto(Long id, String name, Integer semester, Integer credits, List<TutorDto> tutors, Integer code, String description, String img_bs64) {
         this.id = id;
         this.name = name;
         this.semester = semester;
         this.credits = credits;
         this.tutors = tutors;
+        this.code = code;
+        this.description = description;
+        this.img_bs64 = img_bs64;
     }
 
     public Long getId() {
@@ -55,5 +61,29 @@ public class SubjectWithTutorsDto {
 
     public void setTutors(List<TutorDto> tutors) {
         this.tutors = tutors;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImg_bs64() {
+        return img_bs64;
+    }
+
+    public void setImg_bs64(String img_bs64) {
+        this.img_bs64 = img_bs64;
     }
 }
