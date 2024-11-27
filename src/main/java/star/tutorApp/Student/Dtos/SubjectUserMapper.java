@@ -1,7 +1,6 @@
 package star.tutorApp.Student.Dtos;
 
 import org.springframework.stereotype.Component;
-import star.tutorApp.Student.Dtos.SubjectUserDto;
 import star.tutorApp.Student.Entities.SubjectUserEntity;
 
 @Component

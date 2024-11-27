@@ -1,11 +1,10 @@
 package star.tutorApp.Student.Controllers;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import star.tutorApp.Student.Dtos.SubjectUserDto;
+import star.tutorApp.Student.Dtos.SubjectWithTutorsDto;
 import star.tutorApp.Student.Entities.SubjectEntity;
-import star.tutorApp.Student.Entities.SubjectUserEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import star.tutorApp.Student.Services.SubjectService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,10 +24,10 @@ public class SubjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<SubjectUserDto>> getSubjectsById(@PathVariable Long id) {
-        List<SubjectUserDto> results = subjectService.getSubjectDetailsById(id);
+    public ResponseEntity<SubjectWithTutorsDto> getSubjectsById(@PathVariable Long id) {
+        SubjectWithTutorsDto result = subjectService.getSubjectDetailsById(id);
 
-        return ResponseEntity.ok(results);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/semester")
