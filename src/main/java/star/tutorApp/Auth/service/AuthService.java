@@ -2,6 +2,7 @@ package star.tutorApp.Auth.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,9 +25,8 @@ import star.tutorApp.Exception.EmailAlreadyExistsException;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-
-
     private final UserRepository userRepository;
+    @Autowired
     private final  JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
