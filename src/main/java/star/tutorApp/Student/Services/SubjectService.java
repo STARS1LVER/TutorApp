@@ -34,7 +34,7 @@
         public SubjectWithTutorsDto getSubjectDetailsById(Long id) {
             Map<String, Object> result = subjectRepository.findSubjectWithTutors(id);
 
-
+            System.out.print(result);
             // Manejo del tipo del ID para convertir Integer a Long si es necesario
             Object idObject = result.get("id");
             Long subjectId = (idObject instanceof Integer) ? ((Integer) idObject).longValue() : (Long) idObject;

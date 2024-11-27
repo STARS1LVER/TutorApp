@@ -2,10 +2,10 @@ package star.tutorApp.Student.Controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import star.tutorApp.Student.Dtos.SubjectUserDto;
 import star.tutorApp.Student.Dtos.SubjectWithTutorsDto;
 import star.tutorApp.Student.Entities.SubjectEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import star.tutorApp.Student.Services.EmailService;
 import star.tutorApp.Student.Services.SubjectService;
 import org.springframework.security.core.userdetails.UserDetails;
 import star.tutorApp.User.User;
@@ -18,6 +18,7 @@ import java.util.List;
 public class SubjectController {
 
     private final SubjectService subjectService;
+    private EmailService emailService;
 
     public SubjectController(SubjectService subjectService) {
         this.subjectService = subjectService;
@@ -43,5 +44,13 @@ public class SubjectController {
         List<SubjectEntity> subjects = subjectService.getSubjectsBySemester(Integer.parseInt(semester));
 
         return ResponseEntity.ok(subjects);
+    }
+
+    @GetMapping("/{tutorId}")
+    public ResponseEntity<String> sendMessageRequestTutor(@PathVariable Long tutorId) {
+
+        emailService.sendEmail("jflenis36@gmail.com", "Prueba de correo", "Hola, este es un correo de prueba de tutorStar.");
+
+        return ResponseEntity.ok("Enviado de forma satisfactoria");
     }
 }

@@ -18,7 +18,7 @@ public interface SubjectRepository extends JpaRepository<SubjectEntity, Long> {
             value = """
             SELECT 
                 s.*,
-                JSON_ARRAYAGG(JSON_OBJECT('name', u.name, 'email', u.email)) AS tutors
+                JSON_ARRAYAGG(JSON_OBJECT('id', u.id,'name', u.name, 'email', u.email)) AS tutors
             FROM 
                 subject s
             LEFT JOIN 
