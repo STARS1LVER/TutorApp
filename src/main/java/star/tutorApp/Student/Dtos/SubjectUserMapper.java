@@ -15,6 +15,8 @@ public class SubjectUserMapper {
                 entity.getSubject().getName(),
                 entity.getSubject().getSemester(),
                 entity.getSubject().getImgBs64(),
+                entity.getSubject().getCredits(),
+                entity.getSubject().getCode(),
                 entity.getSubject().getDescription(),
                 entity.getCreatedAt(),
                 entity.getUpdatedAt()

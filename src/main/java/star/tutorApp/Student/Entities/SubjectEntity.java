@@ -33,6 +33,8 @@ public class SubjectEntity {
     @JsonManagedReference
     private List<SubjectUserEntity> subjectUsers;
 
+    private int credits;
+    private int code;
 
     // Timestamp para creación
     @CreationTimestamp
@@ -106,5 +108,21 @@ public class SubjectEntity {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

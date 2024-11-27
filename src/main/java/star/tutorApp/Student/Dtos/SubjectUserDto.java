@@ -14,7 +14,7 @@ public class SubjectUserDto {
     private String img_bs64;
     private int subjectSemester;
 
-    public SubjectUserDto(int id, String tutorName, String tutorEmail, String subjectName, int semester, String subjectDescription, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public SubjectUserDto(int id, String tutorName, String tutorEmail, String subjectName, int semester, String subjectDescription, int credits, int code, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.tutorName = tutorName;
         this.tutorEmail = tutorEmail;
