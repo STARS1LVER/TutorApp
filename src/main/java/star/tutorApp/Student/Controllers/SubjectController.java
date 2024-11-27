@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import star.tutorApp.User.User;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -24,7 +23,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/subject")
-@CrossOrigin("http://localhost:4200/") // Permitir solicitudes desde Angular
+@CrossOrigin(origins = {
+    "http://localhost:4200",
+    "https://tutor-app-front.vercel.app"
+})
 public class SubjectController {
     @Autowired
     private final SubjectService subjectService;

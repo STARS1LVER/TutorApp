@@ -6,7 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -106,7 +106,6 @@ public AuthResponse logout(String authHeader) {
     }
     
     try {
-        String token = authHeader.substring(7);
         SecurityContextHolder.clearContext();
         return AuthResponse.builder()
             .message("Sesión cerrada exitosamente")

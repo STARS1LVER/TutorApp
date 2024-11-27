@@ -22,8 +22,6 @@ public class SubjectUserDto {
         this.subjectDescription = subjectDescription;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.subjectSemester = subjectSemester;
-        this.img_bs64 = img_bs64;
     }
 
     // Getters y Setters

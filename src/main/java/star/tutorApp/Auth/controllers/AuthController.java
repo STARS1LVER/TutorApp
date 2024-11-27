@@ -8,9 +8,6 @@ import star.tutorApp.Auth.dto.LoginResponse;
 import star.tutorApp.Auth.dto.RegisterRequest;
 import star.tutorApp.Auth.service.AuthService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-// import java.net.http.HttpHeaders;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +21,10 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor // Hace obligatorio que se agregue el constructor con todos los argumentos
+@RequiredArgsConstructor
 
 public class AuthController {
 
-    @Autowired
     private final AuthService authService;
 
     @PostMapping(value = "login")

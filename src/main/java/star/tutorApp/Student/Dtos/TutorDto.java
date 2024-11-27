@@ -1,6 +1,5 @@
 package star.tutorApp.Student.Dtos;
 
-import java.util.List;
 
 public class TutorDto {
     private Long id;

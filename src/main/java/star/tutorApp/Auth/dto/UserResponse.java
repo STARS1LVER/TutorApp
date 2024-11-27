@@ -8,8 +8,8 @@ import star.tutorApp.User.Role;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserResponse {
 
     private Integer id;

@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class LoginResponse {
 
     private String token;
-    private String message;
-    private Integer status;
     private UserResponse user;
+    private String message;
+    private Integer status; 
 
 }

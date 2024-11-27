@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-
     private String name;
     private String lastName;
     private String email;
@@ -19,5 +18,4 @@ public class RegisterRequest {
     private String career;
     private String modality;
     private String semester;
-
 }
