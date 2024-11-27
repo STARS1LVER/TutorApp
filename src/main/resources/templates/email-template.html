@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Google fonts  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #9c1614;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        .header img {
+           
+            height: 80px; /* Agregado para mantener la proporción */
+            position: relative;
+            left: 50px;
+            top: 10px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content h1 {
+            color: #333;
+        }
+        .content p {
+            color: #555;
+        }
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .accept {
+            background-color: #9c1614;
+            color: #fff;
+            font-weight: bold;
+        }
+        .reject {
+            background-color: #474646;
+            color: #fff;
+            font-weight: bold;
+        }
+        .footer {
+        max-width: 600px;
+        background-color: #1d1c1c;
+        text-align: center;
+       
+        margin: 0 auto; /* Centra el contenedor */
+    }
+    .footer p {
+        margin: 0; /* Asegura que no haya márgenes adicionales */
+        color: #fcb900;
+        padding: 5px;
+    }
+</style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://www.cuc.edu.co/wp-content/uploads/2024/03/logo_cuc_vertical.png" alt="Logo CUC">
+        </div>
+        <div class="content">
+            <h1>Hola, ${tutorName}</h1>
+            <p>Has recibido una solicitud de tutoría para la materia de <strong>${subjectName}</strong></p>
+            <p><strong>Detalles:</strong></p>
+            <p><strong>Estudiante:</strong> ${studentName}</p>
+            <p><strong>Semestre:</strong> ${semester}</p>
+            <p><strong>Fecha:</strong> ${date}</p>
+            <p>¿Deseas aceptar la tutoría? Recuerda que entre más tutorías realices, más beneficios tendrás.</p>
+        </div>
+        <div class="buttons">
+            <a href="${acceptUrl}" class="accept">Aceptar</a>
+            <a href="${rejectUrl}" class="reject">Rechazar</a>
+        </div>
+    </div>
+    <div class="footer">
+        <p style="text-align: center; font-size: 12px; margin-top: 20px;">
+            © 2023 Universidad de la Costa. Todos los derechos reservados.
+        </p>
+    </div>
+</body>
+</html>

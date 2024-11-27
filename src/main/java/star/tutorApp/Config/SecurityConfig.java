@@ -40,6 +40,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                   authRequest
                     .requestMatchers("/auth/**").permitAll()
+                    .requestMatchers("/subject/accept/**").permitAll()
+                    .requestMatchers("/subject/reject/**").permitAll()
                     .anyRequest().authenticated()
                     )
                 .sessionManagement(sessionManager->

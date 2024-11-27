@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #9c1614;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        .header img {
+           
+            height: 80px; /* Agregado para mantener la proporción */
+            position: relative;
+            left: 50px;
+            top: 10px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content h1 {
+            color: #333;
+        }
+        .content p {
+            color: #555;
+        }
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .accept {
+            background-color: #9c1614;
+            color: #fff;
+            font-weight: bold;
+        }
+        .reject {
+            background-color: #474646;
+            color: #fff;
+            font-weight: bold;
+        }
+        .footer {
+        max-width: 600px;
+        background-color: #1d1c1c;
+        text-align: center;
+       
+        margin: 0 auto; /* Centra el contenedor */
+    }
+    .footer p {
+        margin: 0; /* Asegura que no haya márgenes adicionales */
+        color: #fcb900;
+        padding: 5px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://www.cuc.edu.co/wp-content/uploads/2024/03/logo_cuc_vertical.png" alt="Logo CUC">
+        </div>
+        <div class="content">
+            <h1>¡Buenas noticias!</h1>
+            <p>Tu solicitud de tutoría ha sido aceptada</p>
+            <p><strong>Detalles:</strong></p>
+            <p><strong>Tutor:</strong> ${tutorName}</p>
+            <p><strong>Materia:</strong> ${subjectName}</p>
+            <p>Tu tutor se pondrá en contacto contigo pronto para coordinar la tutoría.</p>
+        </div>
+        <div class="footer">
+            <p>© 2023 Universidad de la Costa. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

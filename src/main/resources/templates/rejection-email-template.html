@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;...;1,900&display=swap" rel="stylesheet">
+    <!-- ... estilos existentes ... -->
+    <style>
+       
+        .message-box {
+            background-color: #f8f8f8;
+            border-left: 4px solid #9c1614;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://www.cuc.edu.co/wp-content/uploads/2024/03/logo_cuc_vertical.png" alt="Logo CUC">
+        </div>
+        <div class="content">
+            <h1>Hola, ${studentName}</h1>
+            <div class="message-box">
+                <p>Lamentamos informarte que tu solicitud de tutoría para la materia <strong>${subjectName}</strong> no pudo ser agendada para la fecha solicitada.</p>
+                <p><strong>Detalles de la solicitud:</strong></p>
+                <p>Fecha solicitada: ${date}</p>
+                <p>Tutor: ${tutorName}</p>
+            </div>
+            <p>Te invitamos a realizar una nueva solicitud en una fecha diferente.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p style="text-align: center; font-size: 12px; margin-top: 20px;">
+            © 2023 Universidad de la Costa. Todos los derechos reservados.
+        </p>
+    </div>
+</body>
+</html>
